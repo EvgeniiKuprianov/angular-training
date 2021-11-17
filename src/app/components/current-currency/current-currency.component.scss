@@ -1,0 +1,7 @@
+@import '../../../variables.scss';
+
+mat-form-field {
+    @include indentForElements;
+    width: $basicWidth * 2;
+    background-color: pink;
+}
