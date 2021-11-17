@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'amount-of-currency-input',
-  templateUrl: './amount-of-currency-input.component.html',
-  styleUrls: ['./amount-of-currency-input.component.scss']
+  selector: 'input-currency',
+  templateUrl: './input-currency.component.html',
+  styleUrls: ['./input-currency.component.scss']
 })
 export class InputCurrencyComponent implements OnInit {
 
