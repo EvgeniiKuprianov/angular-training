@@ -11,7 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AmountOfCurrencyInput } from './amount-of-currency-input/amount-of-currency-input.component';
+import { InputCurrencyComponent } from './amount-of-currency-input/amount-of-currency-input.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ToolbarTabComponent } from './toolbar-tab/toolbar-tab.component';
 import { ChangePageComponent } from './change-page/change-page.component';
@@ -23,7 +23,7 @@ import { ContactPageComponent } from './contact-page/contact-page.component';
     AppComponent,
     CurrentCurrency,
     NewCurrency,
-    AmountOfCurrencyInput,
+    InputCurrencyComponent,
     ToolbarComponent,
     ToolbarTabComponent,
     ChangePageComponent,

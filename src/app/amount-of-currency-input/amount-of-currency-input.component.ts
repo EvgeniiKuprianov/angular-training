@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './amount-of-currency-input.component.html',
   styleUrls: ['./amount-of-currency-input.component.scss']
 })
-export class AmountOfCurrencyInput implements OnInit {
+export class InputCurrencyComponent implements OnInit {
 
   constructor() { }
 
