@@ -1,0 +1,6 @@
+<show-hide-button [isShowAll]="isShowAll" (click)="showAndHide()"></show-hide-button>
+<div class="wrapper-users-card">
+    <div *ngFor='let user of usersArray; let index = index' class="wrapper-user-card">
+        <user-card [user]="user" [isShowAll]="isShowAll" [index]="index" (buttonClick)="handleChangeStatus($event)"></user-card>
+    </div>
+</div>
