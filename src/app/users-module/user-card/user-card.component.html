@@ -1,0 +1,13 @@
+<div class="user-card">
+    <div class="user-photo-card">
+        <span class="user-status" [ngClass]="{
+            'user-active-status': user.status,
+            'user-inactive-status': !user.status
+        }"></span>
+    </div>
+    <p class="user-name"> Name: {{ user.name }} </p>
+    <p class="user-age"> Ages: {{ user.age }} </p>
+    <div class="user-status-container">
+        <button *ngIf="user.status" class="user-change-status" (click)="changeStatus(index)">Change status</button>
+    </div>
+</div>

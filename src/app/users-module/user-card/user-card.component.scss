@@ -1,0 +1,57 @@
+@import '../../../mixins.scss';
+
+.user-card {
+    @include fontsSetting;
+    padding: $normalValue;
+    border-radius: 2 * $rounding;
+    height: 10 * $normalValue;
+    width: 150px;
+    margin: 5px;
+    text-align: center;
+    background: white;
+
+    .user-photo-card {
+        @include userPhoto;
+        width: $naturalWidth;
+        height: 150px;
+        position: relative;
+    
+        .user-status {
+            @include userStatus;
+            position: absolute;
+            bottom: 0;
+            right: $normalValue;
+            width: $normalValue;
+            height: $normalValue;
+            cursor: pointer;  
+        }
+        
+        .user-active-status {
+            background: chartreuse;
+        }
+        
+        .user-inactive-status {
+            background: red;
+        }
+    }
+
+    .user-name, .user-age {
+        margin: 0;
+    }
+
+    .user-change-status {
+        @include fontsSetting;
+        width: $naturalWidth;
+        height: $normalValue;
+        border-radius: $rounding;
+        background: lightgray;
+        color: red;
+        border: none;
+        cursor: pointer;
+    }
+}
+
+
+
+
+
