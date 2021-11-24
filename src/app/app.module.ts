@@ -3,8 +3,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { InputModule } from './input-module/input-module.module';
 import { UsersModule } from './users-module/users-module.module';
+import { SharedUserCardModule } from './shared-user-card-module/shared-user-card.module';
+import { UserStateService } from './user-state.service';
 
 
 @NgModule({
@@ -14,10 +15,10 @@ import { UsersModule } from './users-module/users-module.module';
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
-    InputModule,
+    SharedUserCardModule,
     UsersModule
   ],
-  providers: [],
+  providers: [UserStateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

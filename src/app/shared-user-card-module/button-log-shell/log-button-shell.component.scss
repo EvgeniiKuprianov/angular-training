@@ -1,0 +1,13 @@
+@import '../../../mixins.scss';
+
+button {
+    @include fontsSetting;
+    width: $naturalWidth;
+    height: $normalValue;
+    border-radius: $rounding;
+    background: lightgray;
+    color: blue;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}

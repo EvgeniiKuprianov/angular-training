@@ -4,11 +4,12 @@
     @include fontsSetting;
     padding: $normalValue;
     border-radius: 2 * $rounding;
-    height: 10 * $normalValue;
+    // height: 12 * $normalValue;
     width: 150px;
     margin: 5px;
     text-align: center;
     background: white;
+    position: relative;
 
     .user-photo-card {
         @include userPhoto;
@@ -28,29 +29,30 @@
         
         .user-active-status {
             background: chartreuse;
+            transition: 0.5s;
         }
         
         .user-inactive-status {
             background: red;
+            transition: 0.5s;
         }
     }
 
     .user-name, .user-age {
         margin: 0;
     }
-
-    .user-change-status {
-        @include fontsSetting;
-        width: $naturalWidth;
-        height: $normalValue;
-        border-radius: $rounding;
-        background: lightgray;
-        color: red;
-        border: none;
-        cursor: pointer;
-    }
 }
 
+.vehicle-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid gray;
+}
+
+.title-information {
+    margin: 0;
+}
 
 
 
