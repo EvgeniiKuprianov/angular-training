@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from '../../user-interface';
-import { UserStateService } from '../../user-state.service';
+import { User } from '../../users-module/interfaces/user-interface';
+import { UserStateService } from '../../users-module/services/user-state.service';
 
 
 @Component({
@@ -11,10 +11,10 @@ import { UserStateService } from '../../user-state.service';
               'showButton': user.status,
               'hideButton': !user.status
             }">Change status</button>`,
-  styleUrls: ['./button-status-shell.component.scss']
+  styleUrls: ['./button-status.component.scss']
 })
 
-export class ButtonStatusShellComponent implements OnInit {
+export class ButtonStatusComponent implements OnInit {
 
   @Input() user: User;
 

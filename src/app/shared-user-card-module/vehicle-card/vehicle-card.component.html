@@ -1,10 +1,9 @@
 <div [@openClose]="showInformation ? 'open' : 'closed'" class="vehicle-information-card">
-    <ng-content></ng-content>
-    <ng-content></ng-content>
+    <ng-content select=".title-information"></ng-content>
+    <ng-content select=".vehicle-photo"></ng-content>
     <p class="vehicle-title">Сar brand: {{ carInformation ? carInformation.brand : "-" }} </p>
     <p class="vehicle-number">Car number: {{ carInformation ? carInformation.number : "-" }} </p>
 </div>
 <button (click)="openTab()" class="vehicle-card-curtain" 
     [ngClass]="{'rotate-arrow': showInformation}">
 </button>
-

@@ -3,8 +3,8 @@ import {trigger, transition, animate, style, state} from '@angular/animations';
 
 @Component({
   selector: 'vehicle-card',
-  templateUrl: './vehicle-card-shell.component.html',
-  styleUrls: ['./vehicle-card-shell.component.scss'],
+  templateUrl: './vehicle-card.component.html',
+  styleUrls: ['./vehicle-card.component.scss'],
   animations: [
     trigger('openClose', [
         state('open', style({
@@ -25,10 +25,10 @@ import {trigger, transition, animate, style, state} from '@angular/animations';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class VehicleCardShellComponent implements OnInit {
+export class VehicleCardComponent implements OnInit {
 
   showInformation: boolean = false;
-  @Input() carInformation: any;
+  @Input() carInformation: any;  
 
   constructor() { }
 

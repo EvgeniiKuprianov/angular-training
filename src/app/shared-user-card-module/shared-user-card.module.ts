@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserCardShellComponent } from './user-card-shell/user-card-shell.component';
-import { LogButtonShellComponent } from './button-log-shell/log-button-shell.component';
-import { ButtonStatusShellComponent } from './button-status-shell/button-status-shell.component';
-import { VehicleCardShellComponent } from './vehicle-card-shell/vehicle-card-shell.component';
+import { UserCardComponent } from './user-card/user-card.component';
+import { LogButtonComponent } from './button-log/log-button.component';
+import { ButtonStatusComponent } from './button-status/button-status.component';
+import { VehicleCardComponent } from './vehicle-card/vehicle-card.component';
 
 
 
 @NgModule({
-  declarations: [UserCardShellComponent, LogButtonShellComponent, ButtonStatusShellComponent, VehicleCardShellComponent],
+  declarations: [UserCardComponent, LogButtonComponent, ButtonStatusComponent, VehicleCardComponent],
   imports: [
     CommonModule,
   ],
-  exports: [UserCardShellComponent]
+  exports: [UserCardComponent]
 })
 export class SharedUserCardModule { }

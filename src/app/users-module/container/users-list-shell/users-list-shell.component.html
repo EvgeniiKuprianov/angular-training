@@ -1,5 +1,5 @@
-<show-hide-button [isShowAll]="isShowAll" (click)="showAndHide()"></show-hide-button>
-<deactivate-button (click)="deactivateUsers()"></deactivate-button>
+<button (click)="showAndHide()"> {{ isShowAll ? 'Show all users' : 'Hide non-active users'}} </button>
+<button (click)="deactivatePossibleUsers()" [disabled]="disabledButton">Deactivate all possible users</button>
 <div class="wrapper-users-card">
     <div *ngFor="let user of usersArray; let index = index" class="wrapper-user-card">
         <user-card [user]="user" [isShowAll]="isShowAll" [index]="index" (buttonClick)="handleChangeStatus($event)"></user-card>

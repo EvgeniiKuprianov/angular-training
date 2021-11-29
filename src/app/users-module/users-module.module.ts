@@ -1,23 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UsersListComponent } from './users-list/users-list.component';
-import { ShowHideButtonComponent } from './show-hide-button-shell/show-hide-button-shell.component';
+import { UsersListShellComponent } from './container/users-list-shell/users-list-shell.component';
 import { SharedUserCardModule } from '../shared-user-card-module/shared-user-card.module';
-import { DeactivateButtonShellComponent } from './deactivate-button-shell/deactivate-button-shell.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddUserComponent } from './components/add-user/add-user.component';
+
 
 
 @NgModule({
   declarations: [
-    UsersListComponent,
-    ShowHideButtonComponent,
-    DeactivateButtonShellComponent,
+    UsersListShellComponent,
+    AddUserComponent
   ],
   imports: [
     CommonModule,
-    SharedUserCardModule
+    SharedUserCardModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
-    UsersListComponent
+    UsersListShellComponent
   ]
 })
 export class UsersModule {

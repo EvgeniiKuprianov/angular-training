@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
-import { User } from './user-interface';
+import { User } from '../interfaces/user-interface';
+import { Observable } from 'rxjs';
+import { of } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserStateService {
   constructor() {}
   public user: User;
+  public disabledButton: boolean = false;
   public isShowAll: boolean = true;
   public usersArray: User[] = [
     {'name': 'Alex', 'age': 17, 'status': true, 'id': 1},
@@ -45,7 +50,35 @@ export class UserStateService {
     {'name': 'Anna', 'age': 35, 'status': false, 'id': 15},
   ];
 
-  public changeUserStatus(mutableUser: User): void {       
+  public getUsers(): Observable<User[]> {
+    return of(this.usersArray);
+  }
+
+  public getIsShowAll(): Observable<boolean> {
+    return of(this.isShowAll);
+  }
+ 
+  public getIsDisable(): Observable<boolean> {
+    return of(this.disabledButton);
+  }
+
+  public changeDisableFlag(): void {
+    this.disabledButton = true;
+  }
+ 
+  public deactivateUsers(): void {
+    this.usersArray.forEach(user => {
+      if (user.age >= 18 && user.status) {
+        user.status = false;
+      }
+    })
+  }
+
+  public addNewUser(newUser: User): void {
+    this.usersArray.push(newUser);
+  }
+
+  public changeUserStatus(mutableUser: User): void {
     this.usersArray = this.usersArray.filter(user => user.id !== mutableUser.id)
   }
 }
