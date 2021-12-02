@@ -10,6 +10,7 @@ import { ButtonStatusComponent } from '../button-status/button-status.component'
 })
 export class UserCardComponent implements OnInit {
   @ViewChild(ButtonStatusComponent)
+
   private changeButtonStatus: ButtonStatusComponent;
   
   @Input() user: User;

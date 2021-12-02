@@ -9,7 +9,6 @@ import { UserStateService } from './users-module/services/user-state.service';
 import { HeaderComponent } from './components/header/header.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +18,7 @@ import { HeaderComponent } from './components/header/header.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedUserCardModule,
-    UsersModule
+    UsersModule,
   ],
   providers: [UserStateService],
   bootstrap: [AppComponent]

@@ -1,9 +1,9 @@
 export interface User {
     name: string,
     surname?: string,
+    email?: string,
     age: number,
     status?: boolean,
-    image?: string,
     id?: number,
     company?: string,
     department?: string,

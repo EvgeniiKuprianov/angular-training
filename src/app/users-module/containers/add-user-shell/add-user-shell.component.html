@@ -1,0 +1,66 @@
+<h1 class="title-page">Add user card:</h1>
+<section [formGroup]="userForm">
+    <mat-error *ngIf="userForm.get('name').invalid && userForm.get('name').touched || showError && !userForm.get('email').dirty">
+        Field is required
+    </mat-error>
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input formControlName="name" matInput placeholder="Enter name">
+    </mat-form-field>
+    
+    <mat-error *ngIf="userForm.get('email').invalid && userForm.get('email').touched && !userForm.get('email').hasError('email') || showError && !userForm.get('email').dirty">
+        Field is required
+    </mat-error>
+    <mat-error *ngIf="userForm.get('email').hasError('email') && userForm.get('email').dirty">
+        Invalid email view, should be "example@gmail.com"
+    </mat-error>
+    <mat-form-field appearance="fill">
+        <mat-label>E-mail</mat-label>
+        <input email formControlName="email" matInput placeholder="Enter e-mail">
+    </mat-form-field>
+
+    <mat-error *ngIf="userForm.get('userAge').touched && userForm.get('userAge').invalid && 
+                    !userForm.get('userAge').dirty 
+                    || showError && !userForm.get('email').dirty">
+        Field is required
+    </mat-error>
+    <mat-error *ngIf="userForm.get('userAge').dirty && userForm.get('userAge').invalid">
+        Number should be between 15 and 100
+    </mat-error>
+    <mat-form-field appearance="fill">
+        <mat-label>Age</mat-label>
+        <input class="input-age-form" type="number" formControlName="userAge" matInput placeholder="Enter ages">
+    </mat-form-field>
+
+
+    <mat-error *ngIf="userForm.get('userCompany').invalid">
+        Max length of company name 35 symbols
+    </mat-error>
+    <mat-form-field appearance="fill">
+        <mat-label>User company</mat-label>
+        <input formControlName="userCompany" matInput placeholder="Enter user company">
+    </mat-form-field>
+
+    <mat-error *ngIf="userForm.get('userDepartment').invalid">
+        Min length of department name 6 symbols
+    </mat-error>
+    <mat-form-field appearance="fill">
+        <mat-label>Department</mat-label>
+        <input formControlName="userDepartment" matInput placeholder="Enter department">
+    </mat-form-field>
+
+
+    <mat-error *ngIf="userForm.get('gender').invalid && userForm.get('gender').touched
+                || showError && !userForm.get('email').dirty">
+        Field is required
+    </mat-error>
+     <mat-form-field appearance="fill">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option value="male">Male</mat-option>
+          <mat-option value="female">Female</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <button mat-button (click)="onSubmit()" appearance="fill">Submit</button>
+</section>
