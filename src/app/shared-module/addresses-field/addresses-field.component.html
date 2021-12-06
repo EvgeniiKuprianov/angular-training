@@ -16,7 +16,7 @@
                 
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Zip code</mat-label>
-                <input matInput formControlName="zipCode" placeholder="Enter zip code">
+                <input matInput formControlName="zipCode" class="input-zip-code" type="number" placeholder="Enter zip code">
                 <mat-error>
                     <custom-error [fieldName]="'Zip code'" [errors]="address.controls['zipCode'].errors"></custom-error>
                 </mat-error>

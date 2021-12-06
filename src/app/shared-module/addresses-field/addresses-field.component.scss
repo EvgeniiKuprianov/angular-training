@@ -10,3 +10,8 @@ button {
     width: 100%;
     border: 3px solid rgb(156, 147, 147);
 }
+
+.input-zip-code::-webkit-inner-spin-button,
+.input-zip-code::-webkit-outer-spin-button {
+    appearance: none;
+}
