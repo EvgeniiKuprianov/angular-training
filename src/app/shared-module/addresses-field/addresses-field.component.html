@@ -4,14 +4,14 @@
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>City</mat-label>
                 <input matInput formControlName="city" placeholder="Enter your city">
-                <mat-error>
-                    <custom-error [fieldName]="'City'" [errors]="address.controls['city'].errors"></custom-error>
-                </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Address</mat-label>
                 <textarea matInput formControlName="address" placeholder="Enter your address"></textarea>
+                <mat-error>
+                    <custom-error [fieldName]="'Address'" [errors]="address.controls['address'].errors"></custom-error>
+                </mat-error>
             </mat-form-field>
                 
             <mat-form-field class="example-full-width" appearance="fill">
