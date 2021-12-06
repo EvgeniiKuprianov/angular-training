@@ -1,0 +1,18 @@
+<div class="user-card">
+    <div class="user-photo-card">
+        <span class="user-status" [ngClass]="{
+            'user-active-status': user.status,
+            'user-inactive-status': !user.status }">
+        </span>
+    </div>
+    <div class="user-information">
+        <p class="user-name"> Name: {{ user.name }} </p>
+        <p class="user-age"> Ages: {{ user.age }} </p>
+        <p class="user-email">E-mail: {{ user.email }}</p>
+        <p class="user-company">Company: {{ user.company }}</p>
+        <p class="user-departament">Department: {{ user.department }}</p>
+    </div>
+    <status-button [user]="user" (click)="changeStatus(user)"></status-button>
+</div>
+
+

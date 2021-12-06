@@ -1,0 +1,56 @@
+<section [formGroup]="userForm">
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input formControlName="name" matInput placeholder="Enter name">
+        <mat-error>
+            <custom-error [fieldName]="'Name'" [errors]="userForm.controls['name'].errors"></custom-error>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>E-mail</mat-label>
+        <input formControlName="email" matInput placeholder="Enter e-mail">
+        <mat-error>
+            <custom-error [fieldName]="'E-mail'" [errors]="userForm.controls['email'].errors"></custom-error>
+        </mat-error>     
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Age</mat-label>
+        <input class="input-age-form" type="number" formControlName="age" matInput placeholder="Enter ages">
+        <mat-error>
+            <custom-error [fieldName]="'Age'" [errors]="userForm.controls['age'].errors"></custom-error>
+        </mat-error>  
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>User company</mat-label>
+        <input formControlName="company" matInput placeholder="Enter user company">
+        <mat-error>
+            <custom-error [fieldName]="'company'" [errors]="userForm.controls['company'].errors"></custom-error>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Department</mat-label>
+        <input formControlName="department" matInput placeholder="Enter department">
+        <mat-error>
+            <custom-error [fieldName]="'department'" [errors]="userForm.controls['department'].errors"></custom-error>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Gender</mat-label>
+        <mat-select formControlName="gender">
+        <mat-option value="male">Male</mat-option>
+        <mat-option value="female">Female</mat-option>
+        </mat-select>
+        <mat-error>
+            <custom-error [fieldName]="'Gender'" [errors]="userForm.controls['gender'].errors"></custom-error>
+        </mat-error>
+    </mat-form-field>
+
+    <addresses-field [parentFormGroup]="userForm"></addresses-field>
+
+    <button mat-button (click)="onSubmit()" appearance="fill">Submit</button>
+</section>

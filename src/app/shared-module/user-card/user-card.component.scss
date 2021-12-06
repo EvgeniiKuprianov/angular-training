@@ -5,7 +5,7 @@
     padding: $normalValue;
     border-radius: 2 * $rounding;
     // height: 12 * $normalValue;
-    width: 150px;
+    width: 200px;
     margin: 5px;
     text-align: center;
     background: white;
@@ -13,8 +13,8 @@
 
     .user-photo-card {
         @include userPhoto;
-        width: $naturalWidth;
-        height: 150px;
+        width: 200px;
+        height: 200px;
         position: relative;
     
         .user-status {
@@ -22,8 +22,8 @@
             position: absolute;
             bottom: 0;
             right: $normalValue;
-            width: $normalValue;
-            height: $normalValue;
+            width: 1.5 * $normalValue;
+            height: 1.5 * $normalValue;
             cursor: pointer;  
         }
         
@@ -38,16 +38,17 @@
         }
     }
 
-    .user-name, .user-age {
-        margin: 0;
+    .user-information {
+        text-align: left;
+    
+        .user-name, 
+        .user-age, 
+        .user-email, 
+        .user-department, 
+        .user-company {
+            margin: 0;
+        }
     }
-}
-
-.vehicle-photo {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 3px solid gray;
 }
 
 .title-information {

@@ -5,23 +5,10 @@ section {
     flex-direction: column;
 }
 
-section > * {
-    padding: 0;
-}
-
 .title-page {
     font-family: monospace;
     font-size: 30px;
     margin: 20px;
-}
-
-.input-age-form::-webkit-inner-spin-button,
-.input-age-form::-webkit-outer-spin-button {
-    appearance: none;
-}
-
-mat-error {
-    text-align: left;
 }
 
 

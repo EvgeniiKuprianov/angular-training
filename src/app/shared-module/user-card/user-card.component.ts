@@ -17,10 +17,6 @@ export class UserCardComponent implements OnInit {
 
   constructor() { }
 
-  logger(user: User) {
-    console.log(user);
-  }
-
   changeStatus(user: User): void {
     this.changeButtonStatus.changeStatus(user);
   }
