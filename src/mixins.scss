@@ -1,6 +1,6 @@
 @mixin userPhoto {
     border-radius: 50%;
-    background-image: url('./assets/images/user_without_photo.jpg');
+    background-image: url("./assets/images/user_without_photo.jpg");
     background-size: 200px;
 }
 

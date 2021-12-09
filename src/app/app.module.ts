@@ -10,17 +10,17 @@ import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent
-  ],
-  imports: [
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    SharedUserCardModule,
-    UsersModule,
-  ],
-  providers: [UserStateService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HeaderComponent
+    ],
+    imports: [
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        SharedUserCardModule,
+        UsersModule,
+    ],
+    providers: [UserStateService],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

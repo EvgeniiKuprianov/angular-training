@@ -12,24 +12,24 @@ import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
-  declarations: [
-    UsersListShellComponent,
-    AddUserShellComponent,
-  ],
-  imports: [
-    CommonModule,
-    SharedUserCardModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatButtonModule
-  ],
-  exports: [
-    UsersListShellComponent
-  ]
+    declarations: [
+        UsersListShellComponent,
+        AddUserShellComponent,
+    ],
+    imports: [
+        CommonModule,
+        SharedUserCardModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatButtonModule
+    ],
+    exports: [
+        UsersListShellComponent
+    ]
 })
 export class UsersModule {
-  constructor() {}
+    constructor() { }
 }

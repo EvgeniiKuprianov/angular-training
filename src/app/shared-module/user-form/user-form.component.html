@@ -12,7 +12,7 @@
         <input formControlName="email" matInput placeholder="Enter e-mail">
         <mat-error>
             <custom-error [fieldName]="'E-mail'" [errors]="userForm.controls['email'].errors"></custom-error>
-        </mat-error>     
+        </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -20,7 +20,7 @@
         <input class="input-age-form" type="number" formControlName="age" matInput placeholder="Enter ages">
         <mat-error>
             <custom-error [fieldName]="'Age'" [errors]="userForm.controls['age'].errors"></custom-error>
-        </mat-error>  
+        </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -42,8 +42,8 @@
     <mat-form-field appearance="fill">
         <mat-label>Gender</mat-label>
         <mat-select formControlName="gender">
-        <mat-option value="male">Male</mat-option>
-        <mat-option value="female">Female</mat-option>
+            <mat-option value="male">Male</mat-option>
+            <mat-option value="female">Female</mat-option>
         </mat-select>
         <mat-error>
             <custom-error [fieldName]="'Gender'" [errors]="userForm.controls['gender'].errors"></custom-error>
