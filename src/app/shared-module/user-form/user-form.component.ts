@@ -4,7 +4,6 @@ import { UserStateService } from './../../users-module/services/user-state.servi
 import { Observable } from 'rxjs';
 
 
-
 @Component({
     selector: 'user-form',
     templateUrl: './user-form.component.html',
@@ -13,18 +12,26 @@ import { Observable } from 'rxjs';
 export class UserFormComponent implements OnInit {
 
     @Output() sendForm = new EventEmitter<FormGroup>();
+    @Output() newForm = new EventEmitter<FormGroup>();
+
     userForm: FormGroup;
+    genderGroup: object[] = [
+        { name: 'male', value: 'Male' },
+        { name: 'female', value: 'Female' }
+    ]
 
     constructor(private formBuilder: FormBuilder,
         private userStateService: UserStateService) { }
 
     ngOnInit(): void {
         this.userForm = this.createUserForm();
+        this.newForm.emit(this.userForm);
     }
 
     public createUserForm(): FormGroup {
         return this.formBuilder.group({
-            name: ['', [Validators.required]],
+            firstName: ['', [Validators.required]],
+            lastName: ['', [Validators.required]],
             email: ['', [Validators.required, Validators.email, this.validateEmail], this.asyncValidator.bind(this)],
             age: ['', [Validators.required, Validators.min(15), Validators.max(100)]],
             company: ['', [Validators.maxLength(35)]],
@@ -34,8 +41,8 @@ export class UserFormComponent implements OnInit {
         })
     }
 
-    public onSubmit(): void {
-        this.sendForm.emit(this.userForm)
+    public sendUserForm(): void {
+        this.sendForm.emit(this.userForm);
     }
 
     private validateEmail(control: AbstractControl): ValidationErrors | null {

@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, IterableDiffers } from '@angular/core';
 import { User } from '../interfaces/user-interface';
-import { Observable, of, delay, tap } from 'rxjs';
+import { Observable, of, delay, map } from 'rxjs';
 import { ValidationErrors } from '@angular/forms';
 
 
@@ -16,33 +16,42 @@ export class UserStateService {
     public index: number = 0;
     public usersArray: User[] = [
         {
-            name: 'Alex', age: 17, status: true, email: 'alex@gmail.com',
-            company: 'ISSoft', department: 'Front-end', gender: 'Male'
+            firstName: 'Alex', lastName: 'Smolov', age: 17, status: true, email: 'alex@gmail.com',
+            company: 'ISSoft', department: 'Front-end', gender: 'Male', city: 'Minsk'
         },
         {
-            name: 'Den', age: 22, status: false, email: 'den@gmail.com',
-            company: 'ISSoft', department: 'Front-end', gender: 'Male'
+            firstName: 'Den', lastName: 'Golovin', age: 22, status: false, email: 'den@gmail.com',
+            company: 'ISSoft', department: 'Front-end', gender: 'Male', city: 'Minsk'
         },
         {
-            name: 'Leva', age: 24, status: true, email: 'leva@gmail.com',
-            company: 'ISSoft', department: 'Front-end', gender: 'Male'
+            firstName: 'Leva', lastName: 'Drobenkov', age: 24, status: true, email: 'leva@gmail.com',
+            company: 'ISSoft', department: 'Front-end', gender: 'Male', city: 'Minsk'
         },
         {
-            name: 'Joe', age: 16, status: true, email: 'joe@gmail.com',
-            company: 'ISSoft', department: 'Front-end', gender: 'Male'
+            firstName: 'Joe', lastName: 'Filipov', age: 16, status: true, email: 'joe@gmail.com',
+            company: 'ISSoft', department: 'Front-end', gender: 'Male', city: 'Minsk'
         },
         {
-            name: 'Anna', age: 35, status: false, email: 'anna@gmail.com',
-            company: 'ISSoft', department: 'Front-end', gender: 'Female'
+            firstName: 'Anna', lastName: 'Arshavina', age: 35, status: false, email: 'anna@gmail.com',
+            company: 'ISSoft', department: 'Front-end', gender: 'Female', city: 'Minsk'
         },
         {
-            name: 'Elena', age: 27, status: true, email: 'elena@gmail.com',
-            company: 'ISSoft', department: 'Front-end', gender: 'Female'
+            firstName: 'Elena', lastName: 'Chalova', age: 27, status: true, email: 'elena@gmail.com',
+            company: 'ISSoft', department: 'Front-end', gender: 'Female', city: 'Minsk'
         },
     ];
 
     public getUsers(): Observable<User[]> {
         return of(this.usersArray);
+    }
+
+    public setUsers(usersArray: User[]) {
+        this.usersArray = usersArray;
+    }
+
+    public getUserById(index: number): Observable<User> {
+        const user = this.usersArray[index];
+        return of(user);
     }
 
     public getIsShowAll(): Observable<boolean> {
@@ -73,6 +82,14 @@ export class UserStateService {
         return of();
     }
 
+    public changeUserData(newUserData: User, userId: number) {
+        this.getUsers().pipe()
+        .subscribe(data => {
+            data[userId] = newUserData
+            this.setUsers(data)
+        })
+    }
+
     public changeUserStatus(mutableUser: User): Observable<void> {
         this.usersArray = this.usersArray.filter(user => user !== mutableUser);
         return of();
@@ -91,8 +108,7 @@ export class UserStateService {
     }
 
     public changeIndex(): Observable<number> {
-        this.index += 1;
-        return of(this.index);
+        return of(this.index++);
     }
     
     public randomInteger(min : number, max: number): number {

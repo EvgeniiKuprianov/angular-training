@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserStateService } from 'src/app/users-module/services/user-state.service';
-import { switchMap, Subject, concatMap, first, take } from 'rxjs';
+import { switchMap, Subject, concatMap, exhaustMap } from 'rxjs';
 
 
 
@@ -11,38 +11,50 @@ import { switchMap, Subject, concatMap, first, take } from 'rxjs';
 })
 export class ControlButtonsComponent implements OnInit {
 
-    activeIndex$ = new Subject();
+    activeIndex = new Subject();
+
+    firstIndex = new Subject();
+
 
     constructor(private userStateService: UserStateService) { }
 
-    ngOnInit(): void {    
-        this.activeIndex$.pipe(
-            switchMap(() => this.userStateService.getIndex()),
-        )
-        .subscribe(data => console.log(data));     
+    ngOnInit(): void {
+        this.activeIndex.pipe(
+            switchMap(() => this.userStateService.getIndex())            
+                )
+            .subscribe(index => console.log(index));
+    
+        this.firstIndex.pipe(
+                exhaustMap(() => this.userStateService.getIndex())
+            )
+            .subscribe(index => console.log(index));
+            
     }
 
-    public lastValue() {
-        this.activeIndex$.next(this.userStateService.changeIndex())
-    }
-
-    public withoutOrder() {
-        this.userStateService.changeIndex()
+    ngOnDestroy(): void {
         this.userStateService.getIndex()
-        .subscribe(data => console.log(data))
     }
 
-    public withOrder() {
-        this.userStateService.getIndex().pipe(
+    public refresh() {
+        this.userStateService.changeIndex();
+        this.activeIndex.next(null);
+    }
+
+    public export() {
+        this.userStateService.changeIndex()
+        this.userStateService.getIndex().pipe() 
+        .subscribe(index => console.log(index));
+    }
+
+    public save() {
+        this.userStateService.getIndex().pipe (
             concatMap(() => this.userStateService.changeIndex())
         )
-        .subscribe(data => console.log(data))
+        .subscribe(index => console.log(index)); 
     }
 
     public firstValue() {
-        this.userStateService.getIndex().pipe(
-            first()
-        )
-        .subscribe(data => console.log(data))
+        this.userStateService.changeIndex();
+        this.firstIndex.next(null);
     }
 }

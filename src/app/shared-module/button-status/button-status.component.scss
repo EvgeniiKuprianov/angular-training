@@ -9,6 +9,7 @@ button {
     color: red;
     border: none;
     cursor: pointer;
+    margin: 5px;
 }
 
 .user-inactive-status {
@@ -20,11 +21,9 @@ button {
 }
 
 .showButton {
-    opacity: 1;
-    transition: 0.5s;
+    display: block;
 }
 
 .hideButton {
-    opacity: 0;
-    transition: 0.5s;
+    display: none;
 }

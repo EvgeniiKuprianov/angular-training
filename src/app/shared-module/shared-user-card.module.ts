@@ -14,7 +14,7 @@ import { ControlButtonsComponent } from './control-buttons/control-buttons.compo
 
 
 @NgModule({
-    declarations: [UserCardComponent, ButtonStatusComponent, CustomErrorComponent, UserFormComponent, AddressesFieldComponent, ControlButtonsComponent],
+    declarations: [UserCardComponent, ButtonStatusComponent, CustomErrorComponent, UserFormComponent, AddressesFieldComponent, ControlButtonsComponent ],
     imports: [
         CommonModule,
         ReactiveFormsModule,

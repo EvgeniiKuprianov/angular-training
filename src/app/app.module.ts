@@ -7,12 +7,14 @@ import { UsersModule } from './users-module/users-module.module';
 import { SharedUserCardModule } from './shared-module/shared-user-card.module';
 import { UserStateService } from './users-module/services/user-state.service';
 import { HeaderComponent } from './components/header/header.component';
+import { EditUserShellComponent } from './users-module/containers/edit-user-shell/edit-user-shell.component';
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        HeaderComponent
+        HeaderComponent,
+        EditUserShellComponent
     ],
     imports: [
         AppRoutingModule,

@@ -5,7 +5,6 @@ import { User } from '../../interfaces/user-interface';
 import { Router } from '@angular/router';
 
 
-
 @Component({
     selector: 'add-user-shell',
     templateUrl: './add-user-shell.component.html',
@@ -23,6 +22,8 @@ export class AddUserShellComponent implements OnInit {
 
     public onSubmit(userForm: FormGroup): void {
         this.newUser = userForm.value;
+        console.log(userForm.controls['gender']);
+
 
         if (userForm.valid) {
             this.userStateService.addNewUser(this.newUser);

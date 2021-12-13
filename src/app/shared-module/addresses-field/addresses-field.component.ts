@@ -29,9 +29,9 @@ export class AddressesFieldComponent implements OnInit {
 
     public createAddressesField(): FormGroup {
         return this.addressForm = this.formBuilder.group({
-            city: [''],
+            city: ['', Validators.required],
             zipCode: [{ value: '', disabled: true }],
-            address: ['', Validators.required],
+            address: [''],
         })
     }
 
