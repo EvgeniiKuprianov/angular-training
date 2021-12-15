@@ -10,13 +10,13 @@ import { ButtonStatusComponent } from '../button-status/button-status.component'
     styleUrls: ['./user-card.component.scss']
 })
 export class UserCardComponent implements OnInit {
+
     @ViewChild(ButtonStatusComponent)
-
+    
     private changeButtonStatus: ButtonStatusComponent;
-
+    
     @Input() user: User;
     @Input() index: number;
-
 
     constructor(private router: Router) { }
 
@@ -29,6 +29,6 @@ export class UserCardComponent implements OnInit {
     }
 
     editUser(user: User): void {
-        this.router.navigate(['/edit-user'], { queryParams: { id: `${user.id}` } });
+        this.router.navigate(['/edit-user', user.id]);
     }
 }

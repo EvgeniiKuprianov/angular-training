@@ -14,7 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 @NgModule({
     declarations: [
         UsersListShellComponent,
-        AddUserShellComponent,
+        AddUserShellComponent
     ],
     imports: [
         CommonModule,

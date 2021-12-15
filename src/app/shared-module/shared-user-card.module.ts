@@ -11,10 +11,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { UserFormComponent } from './user-form/user-form.component';
 import { AddressesFieldComponent } from './addresses-field/addresses-field.component';
 import { ControlButtonsComponent } from './control-buttons/control-buttons.component';
+import { SearchUserInputComponent } from './search-user-input/search-user-input.component';
 
 
 @NgModule({
-    declarations: [UserCardComponent, ButtonStatusComponent, CustomErrorComponent, UserFormComponent, AddressesFieldComponent, ControlButtonsComponent ],
+    declarations: [UserCardComponent, ButtonStatusComponent, CustomErrorComponent, UserFormComponent, AddressesFieldComponent, ControlButtonsComponent, SearchUserInputComponent],
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -23,6 +24,6 @@ import { ControlButtonsComponent } from './control-buttons/control-buttons.compo
         MatSelectModule,
         MatButtonModule
     ],
-    exports: [UserCardComponent, CustomErrorComponent, UserFormComponent, AddressesFieldComponent]
+    exports: [UserCardComponent, CustomErrorComponent, UserFormComponent, AddressesFieldComponent, SearchUserInputComponent]
 })
 export class SharedUserCardModule { }

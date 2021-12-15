@@ -1,2 +1,2 @@
 <h1 class="title-page">Edit user card:</h1>
-<user-form (newForm)="autocompleteForm($event)" (sendForm)="saveChangedUser($event)"></user-form>
+<user-form [userData]="user$ | async" (sendForm)="saveChangedUser($event)"></user-form>

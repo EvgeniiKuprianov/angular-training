@@ -28,7 +28,6 @@ export class ControlButtonsComponent implements OnInit {
                 exhaustMap(() => this.userStateService.getIndex())
             )
             .subscribe(index => console.log(index));
-            
     }
 
     ngOnDestroy(): void {

@@ -4,7 +4,7 @@
     @include fontsSetting;
     padding: $normalValue;
     border-radius: 2 * $rounding;
-    height: 350px;
+    height: 370px;
     width: 200px;
     margin: 5px;
     text-align: center;
@@ -53,11 +53,7 @@
     .user-information {
         text-align: left;
     
-        .user-name, 
-        .user-age, 
-        .user-email, 
-        .user-department, 
-        .user-company {
+        p {
             margin: 0;
         }
     }

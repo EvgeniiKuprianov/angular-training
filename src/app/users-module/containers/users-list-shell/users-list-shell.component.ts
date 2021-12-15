@@ -39,6 +39,10 @@ export class UsersListShellComponent implements OnInit {
         this.isShowAll = !this.isShowAll;
     }
 
+    showNecessaryUsers(usersArray: User[]): void {
+        this.usersArray = usersArray;
+    }
+
     deactivatePossibleUsers() {
         this.userStateService.changeDisableFlag();
         this.userStateService.deactivateUsers();

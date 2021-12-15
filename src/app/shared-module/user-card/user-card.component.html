@@ -6,11 +6,12 @@
         </span>
     </div>
     <div class="user-information">
-        <p class="user-name"> Name: {{ user.firstName }} {{ user.lastName }}</p>
-        <p class="user-age"> Ages: {{ user.age }} </p>
-        <p class="user-email">E-mail: {{ user.email }}</p>
-        <p class="user-company">Company: {{ user.company }}</p>
-        <p class="user-departament">Department: {{ user.department }}</p>
+        <p> Name: {{ user.firstName }} {{ user.lastName }} </p>
+        <p> Ages: {{ user.age }} </p>
+        <p> E-mail: {{ user.email }} </p>
+        <p> Company: {{ user.company }} </p>
+        <p> Department: {{ user.department }} </p>
+        <p> City: {{ user.addressField.city }} </p>
     </div>
     <status-button [user]="user" (click)="changeStatus(user)"></status-button>
     <button (click)="editUser(user)">Edit user</button>

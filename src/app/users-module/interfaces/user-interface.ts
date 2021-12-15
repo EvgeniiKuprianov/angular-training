@@ -6,7 +6,11 @@ export interface User {
     email: string,
     company: string,
     department: string,
+    addressField: {
+        city?: string,
+        address?: string,
+        zipCode?: string
+    }
     gender: string,
-    city: string,
     id?: number
 }

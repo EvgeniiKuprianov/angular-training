@@ -11,7 +11,7 @@ const routes: Routes = [
     { path: 'users-list', component: UsersListShellComponent },
     { path: 'add-user', component: AddUserShellComponent },
     { path: 'control-buttons', component: ControlButtonsComponent },
-    { path: 'edit-user', component: EditUserShellComponent }
+    { path: 'edit-user/:id', component: EditUserShellComponent }
 ];
 
 @NgModule({
