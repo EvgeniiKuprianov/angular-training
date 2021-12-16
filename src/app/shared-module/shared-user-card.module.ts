@@ -12,10 +12,19 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { AddressesFieldComponent } from './addresses-field/addresses-field.component';
 import { ControlButtonsComponent } from './control-buttons/control-buttons.component';
 import { SearchUserInputComponent } from './search-user-input/search-user-input.component';
+import { EditModalPopupComponent } from './edit-modal-popup/edit-modal-popup.component';
 
 
 @NgModule({
-    declarations: [UserCardComponent, ButtonStatusComponent, CustomErrorComponent, UserFormComponent, AddressesFieldComponent, ControlButtonsComponent, SearchUserInputComponent],
+    declarations: [UserCardComponent, 
+        ButtonStatusComponent, 
+        CustomErrorComponent, 
+        UserFormComponent, 
+        AddressesFieldComponent, 
+        ControlButtonsComponent, 
+        SearchUserInputComponent,
+        EditModalPopupComponent
+    ],
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -24,6 +33,13 @@ import { SearchUserInputComponent } from './search-user-input/search-user-input.
         MatSelectModule,
         MatButtonModule
     ],
-    exports: [UserCardComponent, CustomErrorComponent, UserFormComponent, AddressesFieldComponent, SearchUserInputComponent]
+    exports: [
+        UserCardComponent, 
+        CustomErrorComponent, 
+        UserFormComponent, 
+        AddressesFieldComponent, 
+        SearchUserInputComponent, 
+        EditModalPopupComponent
+    ]
 })
 export class SharedUserCardModule { }

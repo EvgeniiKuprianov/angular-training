@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, ChangeDetectionStrategy, SimpleChanges, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { UserStateService } from './../../users-module/services/user-state.service';
-import { map, merge, Observable } from 'rxjs';
+import { map, merge, pairwise, Observable, distinctUntilChanged } from 'rxjs';
 import { User } from 'src/app/users-module/interfaces/user-interface';
 
 
@@ -17,6 +17,7 @@ export class UserFormComponent implements OnInit {
     @Output() sendForm = new EventEmitter<FormGroup>();
 
     user: User;
+    oldUserData: User;
     userForm: FormGroup;
     genderGroup: object[] = [
         { name: 'male', value: 'Male' },
@@ -38,18 +39,27 @@ export class UserFormComponent implements OnInit {
                 map(lastName => this.user.lastName = lastName)
             )
         ).subscribe(_ => this.changingEmail());
+
+        this.userForm.valueChanges.pipe(
+            distinctUntilChanged(),
+            pairwise()
+        ).subscribe(([oldValue, newValue]) => this.checkChangeOfForm(oldValue, newValue)
+        )
     }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes && changes['userData'].currentValue) {
             this.user = changes['userData'].currentValue as User;
             this.userForm.patchValue(this.user);
+            this.changingEmail();
         }
     }
 
     ngAfterViewInit() {
-        const addressFromArray = { addressField: [this.user.addressField] };
-        this.userForm.patchValue(addressFromArray);
+        if (this.user) {
+            const addressFromArray = { addressField: [this.user.addressField] };
+            this.userForm.patchValue(addressFromArray);
+        }
     }
 
     public createUserForm(): FormGroup {
@@ -63,6 +73,10 @@ export class UserFormComponent implements OnInit {
             gender: ['', [Validators.required]],
             status: [true]
         })
+    }
+
+    public checkChangeOfForm(oldValue: User, newValue: User): void {
+        console.log(oldValue, newValue);
     }
 
     public changingEmail(): void {

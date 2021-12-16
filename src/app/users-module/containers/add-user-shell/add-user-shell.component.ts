@@ -22,8 +22,6 @@ export class AddUserShellComponent implements OnInit {
 
     public onSubmit(userForm: FormGroup): void {
         this.newUser = userForm.value;
-        console.log(userForm.controls['gender']);
-
 
         if (userForm.valid) {
             this.userStateService.addNewUser(this.newUser);

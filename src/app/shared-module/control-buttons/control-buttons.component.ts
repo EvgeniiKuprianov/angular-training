@@ -12,7 +12,6 @@ import { switchMap, Subject, concatMap, exhaustMap } from 'rxjs';
 export class ControlButtonsComponent implements OnInit {
 
     activeIndex = new Subject();
-
     firstIndex = new Subject();
 
 

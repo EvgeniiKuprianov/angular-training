@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -24,14 +24,8 @@ export class EditUserShellComponent implements OnInit {
         this.route.params
             .subscribe(data => {                
                 this.userId = data['id'];
-                this.user$ = this.userStateService.getUserById(this.userId)
+                this.user$ = this.userStateService.getUserById(this.userId);
         });
-    }
-
-    autocompleteForm(userForm: FormGroup) {   
-        this.user$.subscribe(userData => {
-            userForm.setValue(userData)
-        });        
     }
 
     saveChangedUser(userForm: FormGroup) {
