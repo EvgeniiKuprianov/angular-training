@@ -1,20 +1,37 @@
-<section [formGroup]="userForm">
-    <mat-form-field appearance="fill">
-        <mat-label>First name</mat-label>
-        <input formControlName="firstName" matInput placeholder="Enter first name">
-        <mat-error>
-            <custom-error [fieldName]="'First name'" [errors]="userForm.controls['firstName'].errors"></custom-error>
-        </mat-error>
-    </mat-form-field>
+<section class="user-form" [formGroup]="userForm">
+    <section class="user-name-field" formGroupName="name">
+        <mat-form-field appearance="fill">
+            <mat-label>Title name</mat-label>
+            <input formControlName="title" matInput placeholder="Enter title of name">
+        </mat-form-field>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Last name</mat-label>
-        <input formControlName="lastName" matInput placeholder="Enter last name">
-        <mat-error>
-            <custom-error [fieldName]="'Last name'" [errors]="userForm.controls['lastName'].errors"></custom-error>
-        </mat-error>
-    </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>First name</mat-label>
+            <input formControlName="first" matInput placeholder="Enter first name">
+            <mat-error>
+                <custom-error [fieldName]="'First name'" [errors]="userForm.controls['name'].get('first').errors"></custom-error>
+            </mat-error>
+        </mat-form-field>
 
+        <mat-form-field appearance="fill">
+            <mat-label>Last name</mat-label>
+            <input formControlName="last" matInput placeholder="Enter last name">
+            <mat-error>
+                <custom-error [fieldName]="'Last name'" [errors]="userForm.controls['name'].get('last').errors"></custom-error>
+            </mat-error>
+        </mat-form-field>
+    </section>
+
+    <section class="user-age-field" formGroupName="dob">
+        <mat-form-field appearance="fill">
+            <mat-label>Age</mat-label>
+            <input class="input-age-form" type="number" formControlName="age" matInput placeholder="Enter ages">
+            <mat-error>
+                <custom-error [fieldName]="'Age'" [errors]="userForm.controls['dob'].get('age').errors"></custom-error>
+            </mat-error>
+        </mat-form-field>
+    </section>
+    
     <mat-form-field appearance="fill">
         <mat-label>E-mail</mat-label>
         <input formControlName="email" matInput placeholder="Enter e-mail">
@@ -24,44 +41,16 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-        <mat-label>Age</mat-label>
-        <input class="input-age-form" type="number" formControlName="age" matInput placeholder="Enter ages">
-        <mat-error>
-            <custom-error [fieldName]="'Age'" [errors]="userForm.controls['age'].errors"></custom-error>
-        </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-        <mat-label>User company</mat-label>
-        <input formControlName="company" matInput placeholder="Enter user company">
-        <mat-error>
-            <custom-error [fieldName]="'company'" [errors]="userForm.controls['company'].errors"></custom-error>
-        </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-        <mat-label>Department</mat-label>
-        <input formControlName="department" matInput placeholder="Enter department">
-        <mat-error>
-            <custom-error [fieldName]="'department'" [errors]="userForm.controls['department'].errors"></custom-error>
-        </mat-error>
+        <mat-label>Phone</mat-label>
+        <input formControlName="phone" matInput placeholder="Enter phone number">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
         <mat-label>Gender</mat-label>
-        <mat-select formControlName="gender">
-            <ng-container *ngFor="let option of genderGroup" >
-                <mat-option value="option.name"> {{ option.value }} </mat-option>
-            </ng-container>
-        </mat-select>
-        <mat-error>
-            <custom-error [fieldName]="'Gender'" [errors]="userForm.controls['gender'].errors"></custom-error>
-        </mat-error>
+        <input formControlName="gender" matInput placeholder="Enter gender of user">
     </mat-form-field>
 
     <addresses-field [parentFormGroup]="userForm"></addresses-field>
 
     <button mat-button (click)="sendUserForm()" appearance="fill">Submit</button>
-    
-    <!-- <edit-modal-popup></edit-modal-popup> -->
 </section>

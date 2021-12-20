@@ -1,7 +1,8 @@
-import { Injectable, IterableDiffers } from '@angular/core';
-import { User } from '../interfaces/user-interface';
-import { Observable, of, delay, map, tap } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { UserFromService } from '../interfaces/user-interface';
+import { Observable, of, delay } from 'rxjs';
 import { ValidationErrors } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -9,74 +10,49 @@ import { ValidationErrors } from '@angular/forms';
 })
 
 export class UserStateService {
-    constructor() { }
-    public user: User;
+    constructor(private http: HttpClient) { }
+    public user: UserFromService;
+    public usersArray: UserFromService[] = [];
     public disabledButton: boolean = false;
-    public isShowAll: boolean = true;
+    public response: any;
     public index: number = 0;
-    public usersArray: User[] = [
-        {
-            firstName: 'Alex', lastName: 'Smolov', age: 17, status: true, email: 'alex@gmail.com',
-            company: 'ISSoft', department: 'Front-end', gender: 'Male', addressField: {
-                city: 'Minsk'
-            }
-        },
-        {
-            firstName: 'Den', lastName: 'Golovin', age: 22, status: false, email: 'den@gmail.com',
-            company: 'ISSoft', department: 'Front-end', gender: 'Male', addressField: {
-                city: 'Paris'
-            }
-        },
-        {
-            firstName: 'Leva', lastName: 'Drobenkov', age: 24, status: true, email: 'leva@gmail.com',
-            company: 'ISSoft', department: 'Front-end', gender: 'Male', addressField: {
-                city: 'Lviv'
-            }
-        },
-        {
-            firstName: 'Joe', lastName: 'Filipov', age: 16, status: true, email: 'joe@gmail.com',
-            company: 'ISSoft', department: 'Front-end', gender: 'Male', addressField: {
-                city: 'Moscow'
-            }
-        },
-        {
-            firstName: 'Anna', lastName: 'Arshavina', age: 35, status: false, email: 'anna@gmail.com',
-            company: 'ISSoft', department: 'Front-end', gender: 'Female', addressField: {
-                city: 'Madrid'
-            }
-        },
-        {
-            firstName: 'Elena', lastName: 'Chalova', age: 27, status: true, email: 'elena@gmail.com',
-            company: 'ISSoft', department: 'Front-end', gender: 'Female', addressField: {
-                city: 'New York'
-            }
-        },
-    ];
 
-    public searchUserByName(searchString: string): Observable<User[]> {
-        let necessaryUsers: User[]
+    public searchUserByName(searchString: string): Observable<UserFromService[]> {
+        let necessaryUsers: UserFromService[]
 
-        this.getUsers().pipe().subscribe(val => necessaryUsers = val.filter(
-            user => (user.firstName + ' ' + user.lastName).toLowerCase().includes(searchString.toLowerCase())))
+        this.getUsersFromServer().pipe().subscribe(val => necessaryUsers = val.filter(
+            user => (user.name.first + ' ' + user.name.last).toLowerCase().includes(searchString.toLowerCase())))
       
         return of(necessaryUsers)
     }
 
-    public getUsers(): Observable<User[]> {
-        return of(this.usersArray);
+    public getUsersFromServer(): Observable<UserFromService[]> {
+        this.http
+            .get<Response>('https://randomuser.me/api/?inc=gender,name,email,phone,dob,location,picture,?page=3&results=30&seed=foobar')
+            .subscribe(data => {
+                this.response = data;
+                this.response.results.map((user, index) => {
+                    user.status = true;
+                    user.id = index;
+                });
+                this.setUsers(this.response.results)            
+        });
+
+        return of (this.usersArray);
     }
 
-    public setUsers(usersArray: User[]) {
-        this.usersArray = usersArray;
+    public sendUsersToServer(usersArray: UserFromService) {
+        return this.http.post('https://randomuser.me/api/sendUsers', usersArray); 
     }
 
-    public getUserById(index: number): Observable<User> {
+    public setUsers(usersArray: UserFromService[]): Observable<void> {
+        this.usersArray = usersArray; 
+        return of();       
+    }
+
+    public getUserById(index: number): Observable<UserFromService> {
         const user = this.usersArray[index];
         return of(user);
-    }
-
-    public getIsShowAll(): Observable<boolean> {
-        return of(this.isShowAll);
     }
 
     public getIsDisable(): Observable<boolean> {
@@ -88,31 +64,21 @@ export class UserStateService {
         return of();
     }
 
-    public deactivateUsers(): Observable<void> {
-        this.usersArray.forEach(user => {
-            if (user.age >= 18 && user.status) {
-                user.status = false;
-            }
-        })
-
-        return of();
-    }
-
-    public addNewUser(newUser: User): Observable<void> {
+    public addNewUser(newUser: UserFromService): Observable<void> {
         this.usersArray.push(newUser);
         return of();
     }
 
-    public changeUserData(newUserData: User, userId: number) {
-        this.getUsers().pipe()
+    public changeUserData(newUserData: UserFromService, userId: number) {
+        this.getUsersFromServer().pipe()
             .subscribe(data => {
                 data[userId] = newUserData
                 this.setUsers(data)
             })
     }
 
-    public changeUserStatus(mutableUser: User): Observable<void> {
-        this.usersArray = this.usersArray.filter(user => user !== mutableUser);
+    public changeUserStatus(mutableUser: UserFromService): Observable<void> {   
+        this.changeUserData(mutableUser, mutableUser.id);
         return of();
     }
 

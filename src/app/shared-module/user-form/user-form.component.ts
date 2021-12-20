@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, ChangeDetectionStrategy, SimpleChanges, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, FormControl, FormArray } from '@angular/forms';
 import { UserStateService } from './../../users-module/services/user-state.service';
-import { map, merge, pairwise, Observable, distinctUntilChanged } from 'rxjs';
-import { User } from 'src/app/users-module/interfaces/user-interface';
+import { tap, merge, Observable } from 'rxjs';
+import { UserFromService } from 'src/app/users-module/interfaces/user-interface';
 
 
 @Component({
@@ -13,16 +13,12 @@ import { User } from 'src/app/users-module/interfaces/user-interface';
 })
 export class UserFormComponent implements OnInit {
 
-    @Input() userData: Observable<User>;
+    @Input() userData: Observable<UserFromService>;
     @Output() sendForm = new EventEmitter<FormGroup>();
 
-    user: User;
-    oldUserData: User;
-    userForm: FormGroup;
-    genderGroup: object[] = [
-        { name: 'male', value: 'Male' },
-        { name: 'female', value: 'Female' }
-    ]
+    public user: UserFromService;
+    public oldUserData: UserFromService;
+    public userForm: FormGroup;
 
     constructor(private formBuilder: FormBuilder,
         private userStateService: UserStateService) {
@@ -30,58 +26,54 @@ export class UserFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        merge(
-            this.userForm.controls['firstName'].valueChanges.pipe(
-                map(firstName => this.user.firstName = firstName)
-            )
-            ,
-            this.userForm.controls['lastName'].valueChanges.pipe(
-                map(lastName => this.user.lastName = lastName)
-            )
-        ).subscribe(_ => this.changingEmail());
-
-        this.userForm.valueChanges.pipe(
-            distinctUntilChanged(),
-            pairwise()
-        ).subscribe(([oldValue, newValue]) => this.checkChangeOfForm(oldValue, newValue)
-        )
+        this.oldUserData = this.userForm.value;
     }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes && changes['userData'].currentValue) {
-            this.user = changes['userData'].currentValue as User;
+            this.user = changes['userData'].currentValue as UserFromService;
             this.userForm.patchValue(this.user);
             this.changingEmail();
-        }
+        }       
+
+        merge(
+            this.userForm.controls['name'].valueChanges.pipe(
+                tap(firstName => this.user.name.first = firstName)
+            )
+            ,
+            this.userForm.controls['name'].valueChanges.pipe(
+                tap(lastName => this.user.name.last = lastName)
+            )
+        ).subscribe(_ => this.changingEmail());
     }
 
-    ngAfterViewInit() {
+    ngAfterViewInit() {        
         if (this.user) {
-            const addressFromArray = { addressField: [this.user.addressField] };
+            const addressFromArray = { location: [this.user.location] };
             this.userForm.patchValue(addressFromArray);
-        }
+        }   
     }
 
     public createUserForm(): FormGroup {
         return this.formBuilder.group({
-            firstName: ['', [Validators.required]],
-            lastName: ['', [Validators.required]],
+            name: this.formBuilder.group({
+                title: [''],
+                first: ['', [Validators.required]], 
+                last: ['', [Validators.required]],
+            }),
+            dob: this.formBuilder.group({
+                age: ['', [Validators.required, Validators.min(15), Validators.max(100)]]
+            }),
             email: ['', [Validators.required, Validators.email, this.validateEmail], this.asyncValidator.bind(this)],
-            age: ['', [Validators.required, Validators.min(15), Validators.max(100)]],
-            company: ['', [Validators.maxLength(35)]],
-            department: ['', [Validators.minLength(6)]],
-            gender: ['', [Validators.required]],
+            gender: [''],
+            phone: [''],
             status: [true]
         })
     }
 
-    public checkChangeOfForm(oldValue: User, newValue: User): void {
-        console.log(oldValue, newValue);
-    }
-
-    public changingEmail(): void {
-        this.user.email = this.user.firstName.toLowerCase() + this.user.lastName.toLowerCase() + '@gmail.com';
-        this.userForm.patchValue({ email: this.user.email })
+    public changingEmail(): void {       
+        this.user.email = this.user.name.first.toLowerCase() + this.user.name.last.toLowerCase() + '@gmail.com';
+        // this.userForm.patchValue({ email: this.user.email })
     }
 
     public sendUserForm(): void {

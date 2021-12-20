@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { UserStateService } from '../../services/user-state.service';
-import { User } from '../../interfaces/user-interface';
+import { UserFromService } from '../../interfaces/user-interface';
 import { Router } from '@angular/router';
 
 
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 
 export class AddUserShellComponent implements OnInit {
-    newUser: User;
+    public newUser: UserFromService;
 
     constructor(private router: Router,
         private userStateService: UserStateService) { }
@@ -22,6 +22,7 @@ export class AddUserShellComponent implements OnInit {
 
     public onSubmit(userForm: FormGroup): void {
         this.newUser = userForm.value;
+        this.newUser.location = userForm.controls['location'].value[0];       
 
         if (userForm.valid) {
             this.userStateService.addNewUser(this.newUser);

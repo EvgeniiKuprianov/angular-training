@@ -1,8 +1,9 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { User } from '../../interfaces/user-interface';
+import { UserFormComponent } from 'src/app/shared-module/user-form/user-form.component';
+import { UserFromService } from '../../interfaces/user-interface';
 import { UserStateService } from '../../services/user-state.service';
 
 
@@ -11,23 +12,28 @@ import { UserStateService } from '../../services/user-state.service';
     templateUrl: './edit-user-shell.component.html',
     styleUrls: ['./edit-user-shell.component.scss']
 })
-export class EditUserShellComponent implements OnInit {
+export class EditUserShellComponent implements OnInit  {
 
-    user$: Observable<User>;
-    userId: number;
+    @ViewChild(UserFormComponent)
+    public userForm: UserFormComponent;
+    public user$: Observable<UserFromService>;
+    public userId: number;
+    public isSubmitted: boolean = false;
 
-    constructor(private route: ActivatedRoute,
+    constructor(
+        private route: ActivatedRoute,
         private router: Router,
         private userStateService: UserStateService) {}
+
 
     ngOnInit(): void {
         this.route.params
             .subscribe(data => {                
                 this.userId = data['id'];
                 this.user$ = this.userStateService.getUserById(this.userId);
-        });
+        });        
     }
-
+ 
     saveChangedUser(userForm: FormGroup) {
         const user = userForm.value;           
         

@@ -4,12 +4,15 @@
     @include fontsSetting;
     padding: $normalValue;
     border-radius: 2 * $rounding;
-    height: 370px;
-    width: 200px;
+    width: 400px;
     margin: 5px;
     text-align: center;
     background: white;
     position: relative;
+
+    img {
+        border-radius: 50%;
+    }
 
     button {
         @include fontsSetting;
@@ -20,22 +23,26 @@
         color: blue;
         border: none;
         cursor: pointer;
-        margin: 5px;
     }
 
     .user-photo-card {
-        @include userPhoto;
-        width: 200px;
-        height: 200px;
-        position: relative;
-    
+        display: flex;
+        flex-direction: row;
+        
+        .photo-block {
+            width: 130px;
+            height: 130px;
+            position: relative;
+            margin: 10px
+        }
+        
         .user-status {
             @include userStatus;
             position: absolute;
             bottom: 0;
-            right: $normalValue;
-            width: 1.5 * $normalValue;
-            height: 1.5 * $normalValue;
+            left: 90px;
+            width: 20px;
+            height: 20px;
             cursor: pointer;  
         }
         
@@ -52,6 +59,7 @@
 
     .user-information {
         text-align: left;
+        padding: 10px;
     
         p {
             margin: 0;

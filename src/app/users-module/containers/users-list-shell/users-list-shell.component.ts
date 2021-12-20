@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../interfaces/user-interface';
+import { PageEvent } from '@angular/material/paginator';
+import { UserFromService } from '../../interfaces/user-interface';
 import { UserStateService } from '../../services/user-state.service';
 
 
@@ -11,41 +12,49 @@ import { UserStateService } from '../../services/user-state.service';
 
 
 export class UsersListShellComponent implements OnInit {
-    isShowAll: boolean;
-    disabledButton: boolean = this.userStateService.disabledButton;
-    usersArray: User[];
-    allUsers: User[];
-    activeUsers: User[];
+    public isShowAll: boolean = true;
+    public disabledButton: boolean = this.userStateService.disabledButton;
+    public usersArray: UserFromService[];
+    public allUsers: UserFromService[];
+    public pageSlice: UserFromService[];
 
-    constructor(private userStateService: UserStateService) {
-    }
+    constructor(private userStateService: UserStateService) {}
 
     ngOnInit(): void {
-        this.userStateService.getIsShowAll().subscribe(isShow => this.isShowAll = isShow);
-        this.userStateService.getUsers().subscribe(users => this.usersArray = users);
+        this.userStateService.getUsersFromServer().subscribe(users => this.usersArray = users);
         this.allUsers = this.usersArray;
-        this.showAndHide();
+        this.pageSlice = this.usersArray.slice(0, 10);
     }
 
     showAndHide(): void {
-        this.activeUsers = this.usersArray.filter(user => user.status);
+        this.isShowAll = !this.isShowAll;
+        this.usersArray = this.isShowAll ? this.allUsers : this.usersArray.filter(user => user.status);
+        this.pageSlice = this.usersArray.slice(0, 10);
+    }
 
-        if (this.isShowAll) {
-            this.usersArray = this.allUsers;
-        } else {
-            this.usersArray = this.activeUsers;
+    showNecessaryUsers(usersArray: UserFromService[]): void {
+        this.usersArray = usersArray;
+        this.pageSlice = this.usersArray.slice(0, 10);
+    }
+
+    deactivatePossibleUsers(): void {
+        this.userStateService.changeDisableFlag();
+        this.userStateService.getIsDisable().subscribe(disabled => this.disabledButton = disabled);
+        this.usersArray.map(user => {
+            if (user.status && user.dob.age >= 18) {
+                user.status = !user.status;
+            }
+        })
+    }
+
+    onPageChange(event: PageEvent): void {
+        const startIndex = event.pageIndex * event.pageSize;
+        let endIndex = startIndex + event.pageSize;
+
+        if (endIndex > this.usersArray.length) {
+            endIndex = this.usersArray.length
         }
 
-        this.isShowAll = !this.isShowAll;
-    }
-
-    showNecessaryUsers(usersArray: User[]): void {
-        this.usersArray = usersArray;
-    }
-
-    deactivatePossibleUsers() {
-        this.userStateService.changeDisableFlag();
-        this.userStateService.deactivateUsers();
-        this.userStateService.getIsDisable().subscribe(disabled => this.disabledButton = disabled);
+        this.pageSlice = this.usersArray.slice(startIndex, endIndex);
     }
 }

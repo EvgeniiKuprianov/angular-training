@@ -1,9 +1,16 @@
-<button (click)="showAndHide()"> {{ isShowAll ? 'Show all users' : 'Hide non-active users'}} </button>
-<button (click)="deactivatePossibleUsers()" [disabled]="disabledButton">Deactivate all possible users</button>
+<button mat-button (click)="showAndHide()"> {{ !isShowAll ? 'Show all users' : 'Hide non-active users'}} </button>
+<button mat-button (click)="deactivatePossibleUsers()" [disabled]="disabledButton">Deactivate all possible users</button>
 <search-user-input (showCurrentUsers)="showNecessaryUsers($event)"></search-user-input>
 <div class="wrapper-users-card">
-    <div *ngFor="let user of usersArray; let index = index" class="wrapper-user-card">
-        <user-card [user]="user" [isShowAll]="isShowAll" [index]="index" (buttonClick)="handleChangeStatus($event)">
+    <div *ngFor="let user of pageSlice; let index = index" class="wrapper-user-card">
+        <user-card [user]="user" [index]="index" (buttonClick)="handleChangeStatus($event)">
         </user-card>
     </div>
 </div>
+
+<mat-paginator [length]="this.usersArray.length"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 15]"
+              aria-label="Select page"
+              (page)="onPageChange($event)">
+</mat-paginator>

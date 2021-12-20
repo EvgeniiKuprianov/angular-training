@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { User } from '../../users-module/interfaces/user-interface';
+import { UserFromService } from '../../users-module/interfaces/user-interface';
 import { Router } from '@angular/router';
 import { ButtonStatusComponent } from '../button-status/button-status.component';
 
@@ -12,23 +12,20 @@ import { ButtonStatusComponent } from '../button-status/button-status.component'
 export class UserCardComponent implements OnInit {
 
     @ViewChild(ButtonStatusComponent)
-    
     private changeButtonStatus: ButtonStatusComponent;
     
-    @Input() user: User;
+    @Input() user: UserFromService;
     @Input() index: number;
 
     constructor(private router: Router) { }
 
-    ngOnInit(): void {
-        this.user.id = this.index;
-    }
+    ngOnInit(): void {}
 
-    changeStatus(user: User): void {
+    changeStatus(user: UserFromService): void {
         this.changeButtonStatus.changeStatus(user);        
     }
 
-    editUser(user: User): void {
+    editUser(user: UserFromService): void {        
         this.router.navigate(['/edit-user', user.id]);
     }
 }

@@ -11,26 +11,27 @@ export class AddressesFieldComponent implements OnInit {
 
     @Input() parentFormGroup: FormGroup;
 
-    addressForm: FormGroup;
+    public addressForm: FormGroup;
 
     constructor(private formBuilder: FormBuilder) { }
 
     ngOnInit(): void {
-        this.parentFormGroup.addControl('addressField', new FormArray([this.createAddressesField()]))
-        this.addressForm.controls['address']
+        this.parentFormGroup.addControl('location', new FormArray([this.createAddressesField()]))
+        this.addressForm.controls['city']
             .valueChanges
             .subscribe(data => this.zipCodeValidation(data))
     }
 
     public get addressesArray(): any {
-        return (this.parentFormGroup.get('addressField') as FormArray).controls;
+        return (this.parentFormGroup.get('location') as FormGroup).controls;
     }
 
     public createAddressesField(): FormGroup {
         return this.addressForm = this.formBuilder.group({
+            country: [''],
             city: ['', Validators.required],
-            zipCode: [{ value: '', disabled: true }],
-            address: [''],
+            postcode: [{ value: '', disabled: true }],
+            state: [''],
         })
     }
 
@@ -45,16 +46,16 @@ export class AddressesFieldComponent implements OnInit {
     }
 
     public zipCodeValidation(addressValue: string): void {
-        const zipCodeControl = this.addressForm.controls['zipCode'];
+        const postCodeControl = this.addressForm.controls['postcode'];
 
         if (addressValue.length) {
-            zipCodeControl.enable();
-            zipCodeControl.setValidators(Validators.required)
-            zipCodeControl.updateValueAndValidity();
+            postCodeControl.enable();
+            postCodeControl.setValidators(Validators.required)
+            postCodeControl.updateValueAndValidity();
         } else {
-            zipCodeControl.clearValidators();
-            zipCodeControl.disable();
-            zipCodeControl.patchValue('');
+            postCodeControl.clearValidators();
+            postCodeControl.disable();
+            postCodeControl.patchValue('');
         }
     }
 }

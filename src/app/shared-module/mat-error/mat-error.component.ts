@@ -11,12 +11,11 @@ export class CustomErrorComponent implements OnInit {
     @Input() errors: ValidationErrors;
     @Input() fieldName: string;
 
-    errorText: string;
-    errorsList: object;
-    mainError: any;
+    public errorText: string;
+    public errorsList: object;
+    public mainError: any;
 
-    constructor() {
-    }
+    constructor() {}
 
     get validationError() {
         this.errors ? this.mainError = Object.keys(this.errors)[0] : undefined;

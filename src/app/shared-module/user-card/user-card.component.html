@@ -1,20 +1,23 @@
 <div class="user-card">
     <div class="user-photo-card">
-        <span class="user-status" [ngClass]="{
-            'user-active-status': user.status,
-            'user-inactive-status': !user.status }">
-        </span>
-    </div>
-    <div class="user-information">
-        <p> Name: {{ user.firstName }} {{ user.lastName }} </p>
-        <p> Ages: {{ user.age }} </p>
-        <p> E-mail: {{ user.email }} </p>
-        <p> Company: {{ user.company }} </p>
-        <p> Department: {{ user.department }} </p>
-        <p> City: {{ user.addressField.city }} </p>
-    </div>
-    <status-button [user]="user" (click)="changeStatus(user)"></status-button>
-    <button (click)="editUser(user)">Edit user</button>
+        <div class="photo-block">
+            <img src="{{ user.picture.large }}" alt="">
+            <span class="user-status" [ngClass]="{
+                'user-active-status': user.status,
+                'user-inactive-status': !user.status }">
+            </span>
+            <status-button [user]="user" (click)="changeStatus(user)"></status-button>
+            <button (click)="editUser(user)">Edit user</button>
+        </div>
+        <div class="user-information">
+            <p> Name: {{ user.name.title }} {{ user.name.first }} {{ user.name.last }}</p>
+            <p> Ages: {{ user.dob.age }} </p>
+            <p> E-mail: {{ user.email }} </p>
+            <p> Phone: {{ user.phone }} </p>
+            <p> Country: {{ user.location.country }} </p>
+            <p> City: {{ user.location.city }} </p>
+            <p> Postcode: {{ user.location.postcode }} </p>
+            <p> State: {{ user.location.state }} </p>
+        </div>
+    </div> 
 </div>
-
-

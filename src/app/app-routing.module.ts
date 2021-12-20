@@ -4,6 +4,7 @@ import { EditUserShellComponent } from './users-module/containers/edit-user-shel
 import { UsersListShellComponent } from './users-module/containers/users-list-shell/users-list-shell.component';
 import { AddUserShellComponent } from './users-module/containers/add-user-shell/add-user-shell.component';
 import { ControlButtonsComponent } from './shared-module/control-buttons/control-buttons.component';
+import { ExitEditUserGuard } from './users-module/guards/exit.user-form.guard';
 
 
 
@@ -11,7 +12,11 @@ const routes: Routes = [
     { path: 'users-list', component: UsersListShellComponent },
     { path: 'add-user', component: AddUserShellComponent },
     { path: 'control-buttons', component: ControlButtonsComponent },
-    { path: 'edit-user/:id', component: EditUserShellComponent }
+    {
+        path: 'edit-user/:id', 
+        component: EditUserShellComponent,
+        canDeactivate: [ExitEditUserGuard]
+    }
 ];
 
 @NgModule({

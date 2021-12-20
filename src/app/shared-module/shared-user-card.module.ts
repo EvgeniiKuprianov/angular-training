@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { UserFormComponent } from './user-form/user-form.component';
 import { AddressesFieldComponent } from './addresses-field/addresses-field.component';
 import { ControlButtonsComponent } from './control-buttons/control-buttons.component';
@@ -31,7 +32,8 @@ import { EditModalPopupComponent } from './edit-modal-popup/edit-modal-popup.com
         MatFormFieldModule,
         MatInputModule,
         MatSelectModule,
-        MatButtonModule
+        MatButtonModule,
+        MatDialogModule
     ],
     exports: [
         UserCardComponent, 

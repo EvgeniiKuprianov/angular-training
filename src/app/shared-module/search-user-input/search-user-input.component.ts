@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs';
-import { User } from './../../users-module/interfaces/user-interface';
+import { UserFromService } from './../../users-module/interfaces/user-interface';
 import { UserStateService } from './../../users-module/services/user-state.service';
 
 
@@ -12,8 +12,8 @@ import { UserStateService } from './../../users-module/services/user-state.servi
 })
 export class SearchUserInputComponent implements OnInit {
 
-    inputSearch: FormControl = new FormControl('');
-    users: User[];
+    public inputSearch: FormControl = new FormControl('');
+    public users: UserFromService[];
 
     @Output() showCurrentUsers = new EventEmitter();
 

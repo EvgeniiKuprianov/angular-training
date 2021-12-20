@@ -4,9 +4,14 @@
             <div mat-dialog-content>
                 <p>You have some unsaved changes, and will be lost. <br> Do you want to leave the page?</p>
             </div>
+            <ul>
+                <ng-container *ngFor="let fieldText of changedFields">
+                    <li> {{ fieldText }} </li>
+                </ng-container>
+            </ul>
             <div mat-dialog-actions>
-                <button mat-button>No, stay here</button>
-                <button mat-button cdkFocusInitial> OK, let me out!</button>
+                <button mat-button mat-dialog-close>No, stay here</button>
+                <button mat-button cdkFocusInitial [mat-dialog-close]="true"> OK, let me out!</button>
             </div>
         </div>
     </div>
