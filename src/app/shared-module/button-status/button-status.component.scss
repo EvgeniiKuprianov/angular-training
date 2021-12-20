@@ -1,0 +1,29 @@
+@import "../../../mixins.scss";
+
+button {
+    @include fontsSetting;
+    width: $naturalWidth;
+    height: $normalValue;
+    border-radius: $rounding;
+    background: lightgray;
+    color: red;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.user-inactive-status {
+    cursor: not-allowed;
+}
+
+.user-active-status {
+    cursor: pointer;
+}
+
+.showButton {
+    display: block;
+}
+
+.hideButton {
+    display: none;
+}

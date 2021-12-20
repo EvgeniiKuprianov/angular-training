@@ -1,0 +1,31 @@
+<ng-container [formGroup]="parentFormGroup">
+    <section formArrayName="addressField">
+        <div class="address-container" *ngFor="let address of addressesArray; let i = index" [formGroup]="address">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>City</mat-label>
+                <input matInput formControlName="city" placeholder="Enter your city">
+                <mat-error>
+                    <custom-error [fieldName]="'City'" [errors]="address.controls['city'].errors"></custom-error>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Address</mat-label>
+                <textarea matInput formControlName="address" placeholder="Enter your address"></textarea>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Zip code</mat-label>
+                <input matInput formControlName="zipCode" class="input-zip-code" type="number"
+                    placeholder="Enter zip code">
+                <mat-error>
+                    <custom-error [fieldName]="'Zip code'" [errors]="address.controls['zipCode'].errors"></custom-error>
+                </mat-error>
+            </mat-form-field>
+
+            <button mat-button (click)="removeAddress(i)" [disabled]="addressesArray.length === 1">
+                Remove address</button>
+        </div>
+        <button mat-button (click)="addAddress()">Add another address</button>
+    </section>
+</ng-container>

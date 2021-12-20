@@ -1,7 +1,7 @@
 @mixin userPhoto {
     border-radius: 50%;
-    background-image: url('./assets/images/user_without_photo.jpg');
-    background-size: 150px;
+    background-image: url("./assets/images/user_without_photo.jpg");
+    background-size: 200px;
 }
 
 @mixin fontsSetting {
@@ -12,6 +12,18 @@
 @mixin userStatus {
     border-radius: 50%;
     border: 3px solid white;
+}
+
+@mixin mainButton {
+    font-size: 15px;
+    font-family: monospace;
+    margin: 10px;
+    background: white;
+    border: none;
+    border-radius: $rounding;
+    width: 300px;
+    height: 2 * $normalValue;
+    cursor: pointer;
 }
 
 $naturalWidth: 100%;
