@@ -34,14 +34,14 @@ export class UserFormComponent implements OnInit {
             this.user = changes['userData'].currentValue as UserFromService;
             this.userForm.patchValue(this.user);
             this.changingEmail();
-        }       
+        }              
 
         merge(
-            this.userForm.controls['name'].valueChanges.pipe(
+            (this.userForm.controls['name'] as FormGroup).controls['first'].valueChanges.pipe(
                 tap(firstName => this.user.name.first = firstName)
             )
             ,
-            this.userForm.controls['name'].valueChanges.pipe(
+            (this.userForm.controls['name'] as FormGroup).controls['last'].valueChanges.pipe(
                 tap(lastName => this.user.name.last = lastName)
             )
         ).subscribe(_ => this.changingEmail());
@@ -73,7 +73,9 @@ export class UserFormComponent implements OnInit {
 
     public changingEmail(): void {       
         this.user.email = this.user.name.first.toLowerCase() + this.user.name.last.toLowerCase() + '@gmail.com';
-        // this.userForm.patchValue({ email: this.user.email })
+        console.log(this.user.email);
+        
+        this.userForm.patchValue({ email: this.user.email })
     }
 
     public sendUserForm(): void {
