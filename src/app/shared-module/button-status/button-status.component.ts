@@ -20,14 +20,13 @@ export class ButtonStatusComponent implements OnInit {
 
     constructor(private userStateService: UserStateService) { }
 
-    public changeStatus(user: UserFromService): void {
-        if (user.dob.age >= 18) {
-            user.status = !user.status;
-            this.userStateService.changeUserStatus(user)
-        }
-    }
-
     ngOnInit(): void {
     }
 
+    public changeStatus(user: UserFromService): void {
+        if (user.dob.age >= 18) {
+            user.status = !user.status;
+            this.userStateService.changeUserData(user, user.id)
+        }
+    }
 }

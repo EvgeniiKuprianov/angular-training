@@ -1,0 +1,34 @@
+<h1>Registration</h1>
+
+<section [formGroup]="registryForm">
+    <mat-form-field appearance="fill">
+        <mat-label>Login</mat-label>
+        <input formControlName="login" matInput placeholder="Login">
+        <mat-error>
+            <custom-error [fieldName]="'Login'" [errors]="registryForm.controls['login'].errors">
+            </custom-error>
+        </mat-error>
+    </mat-form-field>
+
+    <ng-container formGroupName="passwordField">
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input formControlName="password" matInput type="password" placeholder="Password">
+            <mat-error>
+                <custom-error [fieldName]="'Password'" [errors]="registryForm.controls['passwordField'].get('password').errors">
+                </custom-error>
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill">
+            <mat-label>Confirm password</mat-label>
+            <input formControlName="confirmPassword" matInput type="password" placeholder="Password">
+            <mat-error>
+                <custom-error [fieldName]="'Confirm password'" [errors]="registryForm.controls['passwordField'].get('confirmPassword').errors">
+                </custom-error>
+            </mat-error>
+        </mat-form-field>
+    </ng-container>
+    
+    <button mat-button (click)="submit()" appearance="fill">Submit</button>
+</section>

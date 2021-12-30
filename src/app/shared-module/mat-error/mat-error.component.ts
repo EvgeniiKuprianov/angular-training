@@ -37,9 +37,12 @@ export class CustomErrorComponent implements OnInit {
             uniqueEmail: 'User with this e-mail is already registered',
             min: 'Min age must be 15',
             max: 'Max value must be no more than 100',
+            wrongPassword: 'Wrong password',
+            noUsers: 'No user found',
+            differentPasswords: 'Password mismatch',
+            existLogin: 'User with this name already exists',
             maxlength: `Max length of ${this.fieldName} name must be no more than 35 symbols`,
             minlength: `Min length of ${this.fieldName} name must be 6 symbols`,
         }
-
     }
 }

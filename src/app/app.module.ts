@@ -8,13 +8,14 @@ import { SharedUserCardModule } from './shared-module/shared-user-card.module';
 import { HeaderComponent } from './components/header/header.component';
 import { EditUserShellComponent } from './users-module/containers/edit-user-shell/edit-user-shell.component';
 import { UserStateService } from './users-module/services/user-state.service';
+import { AuthUserModule } from './auth-module/auth-user.module';
 
 
 @NgModule({
     declarations: [
         AppComponent,
         HeaderComponent,
-        EditUserShellComponent
+        EditUserShellComponent,
     ],
     imports: [
         HttpClientModule,
@@ -22,6 +23,7 @@ import { UserStateService } from './users-module/services/user-state.service';
         BrowserAnimationsModule,
         SharedUserCardModule,
         UsersModule,
+        AuthUserModule
     ],
     providers: [
         UserStateService

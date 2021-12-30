@@ -8,6 +8,7 @@
             </span>
             <status-button [user]="user" (click)="changeStatus(user)"></status-button>
             <button (click)="editUser(user)">Edit user</button>
+            <button (click)="userDetails(user)">User details</button>
         </div>
         <div class="user-information">
             <p> Name: {{ user.name.title }} {{ user.name.first }} {{ user.name.last }}</p>

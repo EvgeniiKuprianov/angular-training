@@ -1,5 +1,19 @@
 <div class="navigation-bar">
-    <a class="navigation-link" mat-link routerLink="/users-list">Users list</a>
-    <a class="navigation-link" mat-link routerLink="/add-user">Add user</a>
-    <a class="navigation-link" mat-link routerLink="/control-buttons">Control buttons</a>
+    <div *ngIf="currentUser" class="navigation-info-section">
+        <p>Hello {{ currentUser }}!</p>
+        <p>This is "{{ title }}" page.</p>
+    </div>
+    
+    <div class="navigation-links" >
+        <ng-container *ngIf="currentUser">
+            <a class="navigation-link" mat-link routerLink="/users-list">Users list</a>
+            <a class="navigation-link" mat-link routerLink="/add-user">Add user</a>
+            <a class="navigation-link" mat-link routerLink="/control-buttons">Control buttons</a>
+            <a class="navigation-link" (click)="logOut()" mat-link routerLink="/login">Log out</a>
+        </ng-container>
+        <ng-container *ngIf="!currentUser">
+            <a class="navigation-link" mat-link routerLink="/login">Login</a>
+            <a class="navigation-link" mat-link routerLink="/registration">Registration</a>
+        </ng-container>
+    </div>
 </div>

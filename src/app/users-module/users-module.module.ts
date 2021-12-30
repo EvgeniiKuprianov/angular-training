@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ExitEditUserGuard } from './guards/exit.user-form.guard';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { UsersRoutingModule } from './users-routing.module';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         MatSelectModule,
         MatButtonModule,
         MatDialogModule,
-        MatPaginatorModule
+        MatPaginatorModule, 
+        UsersRoutingModule
     ],
     exports: [
         UsersListShellComponent

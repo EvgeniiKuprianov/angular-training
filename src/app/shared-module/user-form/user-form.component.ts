@@ -72,9 +72,7 @@ export class UserFormComponent implements OnInit {
     }
 
     public changingEmail(): void {       
-        this.user.email = this.user.name.first.toLowerCase() + this.user.name.last.toLowerCase() + '@gmail.com';
-        console.log(this.user.email);
-        
+        this.user.email = this.user.name.first.toLowerCase() + this.user.name.last.toLowerCase() + '@gmail.com';        
         this.userForm.patchValue({ email: this.user.email })
     }
 

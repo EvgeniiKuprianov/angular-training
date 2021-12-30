@@ -28,4 +28,8 @@ export class UserCardComponent implements OnInit {
     editUser(user: UserFromService): void {        
         this.router.navigate(['/edit-user', user.id]);
     }
+
+    userDetails(user: UserFromService) {
+        this.router.navigate(['/user-details', user.id]);
+    }
 }
