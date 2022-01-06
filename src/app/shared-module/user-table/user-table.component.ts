@@ -14,7 +14,7 @@ import { MatSort, Sort } from '@angular/material/sort'
 })
 export class UserTableComponent implements AfterViewInit {
    
-    public displayedColumns: string[] = ['Full name', 'E-mail', 'Age', 'Country', 'City'];
+    public displayedColumns: string[] = ['full name', 'e-mail', 'age', 'country', 'city'];
     public dataSource: any = [];
 
     @ViewChild(MatSort) sort: MatSort;
@@ -26,6 +26,16 @@ export class UserTableComponent implements AfterViewInit {
         this.userStateService.getUsers().subscribe(users => {
             this.dataSource  = new MatTableDataSource<UserFromService>(users);
             this.dataSource.paginator = this.paginator;
+            this.dataSource.sortingDataAccessor = (item, property) => {
+                switch(property) {
+                    case 'full name': return `${item.name.first}, ${item.name.last}`
+                    case 'age': return item.dob.age
+                    case 'country': return item.location.country
+                    case 'city': return item.location.city
+                    default: return item[property]
+                }
+            }
+            
             this.dataSource.sort = this.sort;
         });
     }
