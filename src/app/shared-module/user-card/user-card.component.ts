@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { UserFromService } from '../../users-module/interfaces/user-interface';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonStatusComponent } from '../button-status/button-status.component';
 
 
@@ -17,7 +17,8 @@ export class UserCardComponent implements OnInit {
     @Input() user: UserFromService;
     @Input() index: number;
 
-    constructor(private router: Router) { }
+    constructor(private router: Router,
+                private route: ActivatedRoute) { }
 
     ngOnInit(): void {}
 
@@ -25,11 +26,11 @@ export class UserCardComponent implements OnInit {
         this.changeButtonStatus.changeStatus(user);        
     }
 
-    editUser(user: UserFromService): void {        
-        this.router.navigate(['/edit-user', user.id]);
+    editUser(user: UserFromService): void {               
+        this.router.navigate(['edit-user', user.id], { relativeTo: this.route });
     }
 
     userDetails(user: UserFromService) {
-        this.router.navigate(['/user-details', user.id]);
+        this.router.navigate(['user-details', user.id], { relativeTo: this.route });
     }
 }

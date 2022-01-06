@@ -1,0 +1,11 @@
+<header-component>
+    <ng-container userName>
+        <p>Hello {{ currentUser }}!</p>
+    </ng-container>
+    <ng-container tabs>
+        <a class="navigation-link" mat-link routerLink="">Users list</a>
+        <a class="navigation-link" mat-link routerLink="users-table">Client table</a>
+        <a class="navigation-link" mat-link routerLink="add-user">Add user</a>
+        <a class="navigation-link" (click)="logOut()" mat-link routerLink="/login">Log out</a>
+    </ng-container>
+</header-component>

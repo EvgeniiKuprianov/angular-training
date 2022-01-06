@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/users-module/services/auth.service';
 
 
 @Component({
@@ -13,13 +14,13 @@ export class RegistryComponent implements OnInit {
 
     public registryForm: FormGroup;
 
-    constructor(private router: Router) {}
+    constructor(private authService: AuthService) {}
 
     ngOnInit(): void {
         this.createRegistryForm();
     }
 
-    createRegistryForm(): FormGroup {
+    createRegistryForm(): void {
         this.registryForm = new FormGroup({
             login: new FormControl('', [Validators.minLength(5), Validators.maxLength(15), Validators.required, this.loginCheck()]),
             passwordField: new FormGroup({
@@ -27,26 +28,10 @@ export class RegistryComponent implements OnInit {
                 confirmPassword: new FormControl('', [Validators.minLength(5), Validators.maxLength(35), Validators.required])
             }, { validators: this.passwordCheck() })
         })
-
-        return this.registryForm;
     }
 
     submit(): void {
-        if (this.registryForm.valid && !Object.keys(localStorage).includes(this.registryForm.controls['login'].value)) {
-            const userData = (this.registryForm.controls['passwordField'] as FormGroup).controls['password'].value;
-            localStorage.setItem(this.registryForm.controls['login'].value, userData);
-            this.router.navigate(["/login"]);
-        } else {
-            this.registryForm.markAllAsTouched();
-        }
-    }
-
-    show(): void {
-        console.log(localStorage);
-    }
-
-    clear(): void {
-        localStorage.clear()
+        this.authService.registration(this.registryForm);
     }
 
     passwordCheck(): ValidatorFn {

@@ -7,12 +7,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './login/login.component';
 import { RegistryComponent } from './registry/registry.component';
 import { SharedUserCardModule } from '../shared-module/shared-user-card.module';
+import { AuthRoutingModule } from '../auth-module/auth-routing.module';
+import { AuthHeaderComponent } from './auth-header/auth-header.component';
 
 
 @NgModule({
     declarations: [
         LoginComponent,
-        RegistryComponent
+        RegistryComponent,
+        AuthHeaderComponent,
         ],
     imports: [
         CommonModule,
@@ -20,11 +23,13 @@ import { SharedUserCardModule } from '../shared-module/shared-user-card.module';
         MatFormFieldModule,
         MatInputModule,
         MatButtonModule,
-        SharedUserCardModule
+        SharedUserCardModule,
+        AuthRoutingModule
         ],
     exports: [
         LoginComponent,
-        RegistryComponent
+        RegistryComponent,
+        AuthHeaderComponent
     ]
 })
 

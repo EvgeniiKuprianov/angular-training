@@ -34,3 +34,8 @@ export interface Response {
         version: string
     }
 }
+
+export interface IClient {
+    login: string,
+    password: string
+}

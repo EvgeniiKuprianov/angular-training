@@ -25,7 +25,6 @@ export class EditUserShellComponent implements OnInit  {
         private router: Router,
         private userStateService: UserStateService) {}
 
-
     ngOnInit(): void {
         this.route.params
             .subscribe(data => {                

@@ -13,12 +13,7 @@ export class AuthGuard implements CanActivate, CanActivateChild{
         if (localStorage.getItem('token')) {           
             return of(true);
         } else {
-            this.router.navigate(['/login'], { 
-                queryParams: {
-                    accessDenied: true
-                }
-            })
-
+            this.router.navigate(['/login'])
             return of(false);
         }
     }

@@ -1,0 +1,7 @@
+<div *ngIf="(user$ | async) as user">
+    <p>Country: {{ user.location.country }}</p>
+    <p>City: {{ user.location.city }}</p>
+    <p>Postcode: {{ user.location.postcode }}</p>
+    <p>State: {{ user.location.state }}</p>
+</div>
+

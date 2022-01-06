@@ -26,7 +26,7 @@ export class AddUserShellComponent implements OnInit {
 
         if (userForm.valid) {
             this.userStateService.addNewUser(this.newUser);
-            this.router.navigate(["/users-list"]);
+            this.router.navigate(["/users"]);
         } else {
             userForm.markAllAsTouched();
         }

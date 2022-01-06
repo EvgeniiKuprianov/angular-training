@@ -11,14 +11,24 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ExitEditUserGuard } from './guards/exit.user-form.guard';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { UsersRoutingModule } from './users-routing.module';
+import { RouterModule } from '@angular/router';
+import { UserDetailsShellComponent } from './containers/user-details-shell/user-details-shell.component';
+import { UserPersonalShellComponent } from './containers/user-personal-shell/user-personal-shell.component';
+import { UserLocationShellComponent } from './containers/user-location-shell/user-location-shell.component';
+import { UserContactsShellComponent } from './containers/user-contacts-shell/user-contacts-shell.component';
+import { UnauthHeaderComponent } from './components/unauth-header/unauth-header.component';
 
 
 @NgModule({
     providers: [ExitEditUserGuard],
     declarations: [
         UsersListShellComponent,
-        AddUserShellComponent
+        AddUserShellComponent,
+        UserDetailsShellComponent,
+        UserPersonalShellComponent,
+        UserLocationShellComponent,
+        UserContactsShellComponent,
+        UnauthHeaderComponent
     ],
     imports: [
         CommonModule,
@@ -30,13 +40,13 @@ import { UsersRoutingModule } from './users-routing.module';
         MatSelectModule,
         MatButtonModule,
         MatDialogModule,
-        MatPaginatorModule, 
-        UsersRoutingModule
+        MatPaginatorModule,
+        RouterModule
     ],
     exports: [
         UsersListShellComponent
     ]
 })
 export class UsersModule {
-    constructor() { }
+    constructor() {}
 }

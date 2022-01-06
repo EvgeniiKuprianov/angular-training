@@ -34,8 +34,6 @@ export class HttpService {
             errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
         }
 
-        console.log(errorMessage);
         return throwError(errorMessage);
     }
-
 }
